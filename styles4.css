@@ -1,0 +1,264 @@
+/* --- ANIMATED BACKGROUND GRADIENT --- */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: linear-gradient(120deg, #232526 0%, #00c6ff 100%, #414345 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  background: linear-gradient(270deg, #232526, #00c6ff, #414345, #ff00c8, #232526, #0077b5, #ff6a00);
+  background-size: 1200% 1200%;
+  animation: animatedGradient 22s ease-in-out infinite;
+  opacity: 0.93;
+  pointer-events: none;
+}
+
+@keyframes animatedGradient {
+  0% {background-position: 0% 50%;}
+  20% {background-position: 50% 100%;}
+  40% {background-position: 100% 50%;}
+  60% {background-position: 50% 0%;}
+  80% {background-position: 0% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* --- NAVBAR --- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 64px;
+  background: rgba(0, 0, 0, 0.91);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: navFadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.2s both;
+  z-index: 100;
+  box-shadow: 0 2px 16px #00c6ff22, 0 0 24px #00c6ff33 inset;
+  border-bottom: 2px solid #00c6ff33;
+  backdrop-filter: blur(4px);
+  transition: background 0.4s;
+}
+
+@keyframes navFadeIn {
+  0% { opacity: 0; transform: translateY(-40px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+.nav.scrolled {
+  background: rgba(0, 198, 255, 0.85);
+  box-shadow: 0 4px 24px #00c6ff55;
+  border-bottom: 2px solid #fff;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5em;
+  background: transparent;
+  position: relative;
+}
+
+.btn {
+  padding: 0.7em 2em;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(.77,0,.18,1);
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.08em;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  margin: 0 0.5em;
+  box-shadow: 0 2px 8px #00c6ff22;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+.btn.active,
+.btn:focus {
+  background: linear-gradient(90deg, #00c6ff 60%, #0077b5 100%);
+  color: #232526;
+  box-shadow: 0 4px 16px #00c6ff44;
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #00c6ff 60%, #ff00c8 100%);
+  transform: scale(1.12) rotate(-2deg);
+  color: #232526;
+  box-shadow: 0 6px 24px #00c6ff55;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  left: -75%;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.13);
+  transform: skewX(-20deg);
+  transition: left 0.3s;
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  left: 120%;
+}
+
+/* --- PROJECTS SECTION --- */
+.projects-section {
+  margin-top: 110px;
+  padding: 40px 0 60px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+}
+
+.projects-section h1 {
+  color: #00c6ff;
+  font-size: 2.5em;
+  margin-bottom: 32px;
+  text-shadow: 2px 2px 16px #222, 0 0 24px #00c6ff88;
+  animation: fadeInDown 1.2s cubic-bezier(.77,0,.18,1) 0.2s both;
+}
+
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* --- ANIMATED BOX AROUND PROJECTS --- */
+.project-card {
+  background: rgba(34, 36, 38, 0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18), 0 0 24px #00c6ff33;
+  padding: 32px 28px;
+  min-width: 270px;
+  max-width: 340px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  border: 2.5px solid transparent;
+  z-index: 1;
+  animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1) 0.7s both;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 22px;
+  padding: 2px;
+  background: linear-gradient(270deg, #00c6ff, #ff00c8, #ff6a00, #00c6ff);
+  background-size: 400% 400%;
+  animation: borderAnim 6s linear infinite;
+  z-index: -1;
+  filter: blur(1.2px);
+}
+
+@keyframes borderAnim {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.project-card h2 {
+  color: #00c6ff;
+  margin: 0 0 12px 0;
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.project-card p {
+  color: #e0e0e0;
+  font-size: 1em;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.github-btn {
+  background: linear-gradient(90deg, #24292e 60%, #444950 100%);
+  color: #fff;
+  margin-top: 16px;
+}
+
+.github-btn:hover {
+  background: linear-gradient(90deg, #444950 0%, #24292e 100%);
+  color: #00c6ff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px #44495044;
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-40px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 900px) {
+  .projects-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .project-card {
+    max-width: 95vw;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 12px 10px;
+  }
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5em 0;
+  }
+  .btn {
+    margin: 0.3em 0;
+    width: 90vw;
+    text-align: center;
+  }
+  .projects-section {
+    padding: 24px 0 40px 0;
+  }
+  .projects-section h1 {
+    font-size: 1.5em;
+  }
+}

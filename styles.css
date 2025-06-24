@@ -1,0 +1,246 @@
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,800,900');
+
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(135deg, #232526 0%, #00c6ff 100%);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+    background: transparent;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background: linear-gradient(270deg, #232526, #00c6ff, #414345, #232526, #0077b5, #ff6a00, #ff00c8);
+    background-size: 1400% 1400%;
+    animation: animatedGradient 22s ease-in-out infinite;
+    opacity: 0.93;
+    pointer-events: none;
+}
+
+@keyframes animatedGradient {
+    0% {background-position: 0% 50%;}
+    20% {background-position: 50% 100%;}
+    40% {background-position: 100% 50%;}
+    60% {background-position: 50% 0%;}
+    80% {background-position: 0% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+
+.bg-particle {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.13;
+    z-index: 1;
+    pointer-events: none;
+    filter: blur(2px);
+    animation: floatParticle 18s linear infinite;
+    mix-blend-mode: lighten;
+}
+.bg-particle.p1 { width: 180px; height: 180px; background: #00c6ff; left: 8vw; top: 18vh; animation-delay: 0s;}
+.bg-particle.p2 { width: 120px; height: 120px; background: #ff00c8; left: 75vw; top: 65vh; animation-delay: 4s;}
+.bg-particle.p3 { width: 140px; height: 140px; background: #ff6a00; left: 55vw; top: 12vh; animation-delay: 8s;}
+.bg-particle.p4 { width: 90px; height: 90px; background: #0077b5; left: 85vw; top: 35vh; animation-delay: 12s;}
+.bg-particle.p5 { width: 110px; height: 110px; background: #fff; left: 25vw; top: 80vh; animation-delay: 2s; opacity: 0.08;}
+
+@keyframes floatParticle {
+    0% { transform: translateY(0) scale(1);}
+    25% { transform: translateY(-40px) scale(1.08) rotate(8deg);}
+    50% { transform: translateY(-60px) scale(1.12) rotate(-8deg);}
+    75% { transform: translateY(-40px) scale(1.08) rotate(8deg);}
+    100% { transform: translateY(0) scale(1);}
+}
+
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 64px;
+    background: rgba(0, 0, 0, 0.91);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: navFadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.2s both;
+    z-index: 10;
+    box-shadow: 0 2px 16px #00c6ff22, 0 0 24px #00c6ff33 inset;
+    border-bottom: 2px solid #00c6ff33;
+    backdrop-filter: blur(4px);
+    transition: background 0.4s;
+}
+
+@keyframes navFadeIn {
+    0% { opacity: 0; transform: translateY(-40px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+.nav.scrolled {
+    background: rgba(0, 198, 255, 0.85);
+    box-shadow: 0 4px 24px #00c6ff55;
+    border-bottom: 2px solid #fff;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5em;
+    background: transparent;
+    position: relative;
+}
+
+.btn {
+    padding: 0.7em 2em;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(.77,0,.18,1);
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.08em;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    margin: 0 0.5em;
+    box-shadow: 0 2px 8px #00c6ff22;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.btn.active,
+.btn:focus {
+    background: linear-gradient(90deg, #00c6ff 60%, #0077b5 100%);
+    color: #232526;
+    box-shadow: 0 4px 16px #00c6ff44;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #00c6ff 60%, #ff00c8 100%);
+    transform: scale(1.12) rotate(-2deg);
+    color: #232526;
+    box-shadow: 0 6px 24px #00c6ff55;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    left: -75%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.13);
+    transform: skewX(-20deg);
+    transition: left 0.3s;
+    pointer-events: none;
+}
+
+.btn:hover::after {
+    left: 120%;
+}
+
+
+.outline {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.btn:hover ~ .outline .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 0 10 60 10 60;
+    transition: 1s ease-out !important;
+}
+
+
+@keyframes gradientShift {
+    0% { background-position: 40% 50%; }
+    100% { background-position: 60% 50%; }
+}
+
+.title {
+    font-weight: 800;
+    color: transparent;
+    font-size: 10vw;
+    background: url("https://phandroid.s3.amazonaws.com/wp-content/uploads/2014/05/rainbow-nebula.jpg") repeat;
+    background-position: 40% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: -8px;
+    animation: gradientShift 5s infinite alternate ease-in-out;
+    margin-top: 120px;
+    margin-bottom: 0;
+    z-index: 2;
+    filter: drop-shadow(0 4px 24px #00c6ff88);
+}
+
+.subtitle {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 10px;
+    font-size: 1.5em;
+    color: #00c6ff;
+    letter-spacing: 2px;
+    animation: slideIn 1.5s ease-out;
+    z-index: 2;
+    text-shadow: 0 2px 12px #23252688;
+}
+
+
+@media (max-width: 900px) {
+    .title {
+        font-size: 12vw;
+        letter-spacing: -4px;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav {
+        height: auto;
+        flex-direction: column;
+        padding: 0.5em 0;
+    }
+    .container {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+    .btn {
+        width: 90vw;
+        margin: 0.3em 0;
+        font-size: 1em;
+    }
+    .title {
+        font-size: 2.5em;
+        margin-top: 80px;
+    }
+    .subtitle {
+        font-size: 1em;
+    }
+}
+
