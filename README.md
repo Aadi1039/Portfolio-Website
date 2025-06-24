@@ -24,4 +24,4 @@ CSS3 (Flexbox, Grid, Animations, Media Queries)
 
 Google Fonts & Icons (optional)
 
-🚀 ## Demo
+## 🚀 Demo
